@@ -1,11 +1,18 @@
 import viteLogo from '/vite.svg';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
+import { client, getTodos } from '@/apis';
 import reactLogo from './assets/react.svg';
 import './App.css';
 
 function App() {
   const [count, setCount] = useState(0);
+
+  // TODO: DELETE msw 가 잘 동작하는지 확인용
+  useEffect(() => {
+    getTodos().then((data) => console.log('data', data));
+    client.get('/example').then((response) => console.log('data', response.data));
+  }, []);
 
   return (
     <>
